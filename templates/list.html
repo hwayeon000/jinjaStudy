@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>데이터 목록</title>
+    <!-- 기본 스타일: 표와 버튼 레이아웃 -->
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        table { margin: 20px auto; border-collapse: collapse; width: 80%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .action-btn { padding: 5px 10px; margin: 0 5px; }
+        .nav { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <!-- 데이터 목록 페이지 제목 -->
+    <h1>데이터 목록</h1>
+    <!-- 데이터 표: 저장된 데이터를 표시, 수정/삭제 버튼 포함 -->
+    {% if data %}
+        <table>
+            <tr>
+                <th>이름</th>
+                <th>메시지</th>
+                <th>작업</th>
+            </tr>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.message }}</td>
+                    <td>
+                        <!-- 수정 버튼: /edit/{index}로 이동 -->
+                        <form action="/edit/{{ loop.index0 }}" method="get" style="display: inline;">
+                            <button type="submit" class="action-btn">수정</button>
+                        </form>
+                        <!-- 삭제 버튼: /delete/{index}로 요청, 확인 프롬프트 포함 -->
+                        <form action="/delete/{{ loop.index0 }}" method="post" style="display: inline;">
+                            <button type="submit" class="action-btn" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <!-- 데이터가 없을 때 표시 -->
+        <p>데이터가 없습니다.</p>
+    {% endif %}
+    <!-- 네비게이션 링크: 홈과 데이터 입력 페이지로 이동 -->
+    <div class="nav">
+        <a href="/">홈으로 돌아가기</a> |
+        <a href="/form">데이터 입력</a>
+    </div>
+</body>
+</html>

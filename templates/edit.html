@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>데이터 수정</title>
+    <!-- 기본 스타일: 폼과 버튼 레이아웃 -->
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        form { display: inline-block; text-align: left; }
+        input, textarea { margin: 10px 0; width: 100%; }
+        button { padding: 10px 20px; }
+        .nav { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <!-- 데이터 수정 페이지 제목 -->
+    <h1>데이터 수정</h1>
+    <!-- 성공 메시지: 수정 완료 후 표시 -->
+    {% if success %}
+        <p style="color: green;">데이터가 성공적으로 수정되었습니다!</p>
+    {% endif %}
+    <!-- 데이터 수정 폼: 기존 데이터를 로드해 /update/{index}로 전송 -->
+    <form action="/update/{{ index }}" method="post">
+        <label for="name">이름:</label><br>
+        <input type="text" id="name" name="name" value="{{ item.name }}" required><br>
+        <label for="message">메시지:</label><br>
+        <textarea id="message" name="message" required>{{ item.message }}</textarea><br>
+        <button type="submit">수정 완료</button>
+    </form>
+    <!-- 네비게이션 링크: 홈과 목록 페이지로 이동 -->
+    <div class="nav">
+        <a href="/">홈으로 돌아가기</a> |
+        <a href="/list">데이터 목록 보기</a>
+    </div>
+</body>
+</html>
