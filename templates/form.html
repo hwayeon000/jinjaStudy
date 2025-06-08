@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>데이터 입력</title>
-    <!-- 기본 스타일: 폼과 버튼 레이아웃 -->
+{% extends "base.html" %}
+<!-- base.html 상속: 공통 헤더, 풋터, 스타일 사용 -->
+{% block title %}데이터 입력{% endblock %}
+{% block header_title %}데이터 입력{% endblock %}
+{% block styles %}
+    <!-- 기존 스타일 유지: 폼과 버튼 레이아웃 -->
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
         form { display: inline-block; text-align: left; }
         input, textarea { margin: 10px 0; width: 100%; }
         button { padding: 10px 20px; }
-        .nav { margin-top: 20px; }
     </style>
-</head>
-<body>
-    <!-- 데이터 입력 페이지 제목 -->
-    <h1>데이터 입력</h1>
+{% endblock %}
+{% block content %}
     <!-- 성공 메시지: 폼 제출 후 표시 -->
     {% if success %}
         <p style="color: green;">데이터가 성공적으로 제출되었습니다!</p>
@@ -27,10 +23,5 @@
         <textarea id="message" name="message" required></textarea><br>
         <button type="submit">제출</button>
     </form>
-    <!-- 네비게이션 링크: 홈과 목록 페이지로 이동 -->
-    <div class="nav">
-        <a href="/">홈으로 돌아가기</a> |
-        <a href="/list">데이터 목록 보기</a>
-    </div>
-</body>
-</html>
+    <!-- 네비게이션 링크 제거: base.html에서 공통 제공 -->
+{% endblock %}

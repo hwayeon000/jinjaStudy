@@ -1,21 +1,27 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>데이터 목록</title>
-    <!-- 기본 스타일: 표와 버튼 레이아웃 -->
+{% extends "base.html" %}
+<!-- base.html 상속: 공통 헤더, 풋터, 스타일 사용 -->
+{% block title %}데이터 목록{% endblock %}
+{% block header_title %}데이터 목록{% endblock %}
+{% block styles %}
+    <!-- 기존 스타일 유지: 표와 버튼 레이아웃 -->
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
         table { margin: 20px auto; border-collapse: collapse; width: 80%; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
         .action-btn { padding: 5px 10px; margin: 0 5px; }
-        .nav { margin-top: 20px; }
+        /* 검색 폼 스타일 추가: 검색 입력창과 버튼 */
+        .search-form { margin: 20px auto; max-width: 500px; }
+        .search-form input { padding: 8px; width: 70%; }
+        .search-form button { padding: 8px 16px; }
     </style>
-</head>
-<body>
-    <!-- 데이터 목록 페이지 제목 -->
-    <h1>데이터 목록</h1>
+{% endblock %}
+{% block content %}
+    <!-- 검색 폼 추가: /search로 GET 요청 -->
+    <!-- 검색 쿼리 유지: 검색 후 입력값 표시 -->
+    <form class="search-form" action="/search" method="get">
+        <input type="text" name="query" placeholder="이름 또는 메시지로 검색" value="{{ query or '' }}">
+        <button type="submit">검색</button>
+    </form>
     <!-- 데이터 표: 저장된 데이터를 표시, 수정/삭제 버튼 포함 -->
     {% if data %}
         <table>
@@ -45,10 +51,5 @@
         <!-- 데이터가 없을 때 표시 -->
         <p>데이터가 없습니다.</p>
     {% endif %}
-    <!-- 네비게이션 링크: 홈과 데이터 입력 페이지로 이동 -->
-    <div class="nav">
-        <a href="/">홈으로 돌아가기</a> |
-        <a href="/form">데이터 입력</a>
-    </div>
-</body>
-</html>
+    <!-- 네비게이션 링크 제거: base.html에서 공통 제공 -->
+{% endblock %}

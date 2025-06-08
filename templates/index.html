@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>홈페이지</title>
-    <!-- 기본 스타일: 페이지 레이아웃과 링크 스타일링 -->
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        a { margin: 0 20px; text-decoration: none; color: blue; }
-        a:hover { text-decoration: underline; }
-        .nav { margin-top: 20px; }
-    </style>
-</head>
-<body>
-    <!-- 홈페이지 제목 -->
-    <h1>환영합니다!</h1>
-    <!-- 네비게이션 링크: 데이터 입력과 목록 페이지로 이동 -->
-    <div class="nav">
-        <a href="/form">데이터 입력</a> |
-        <a href="/list">데이터 목록 보기</a>
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+<!-- base.html 상속: 공통 헤더, 풋터, 스타일 사용 -->
+{% block title %}홈페이지{% endblock %}
+{% block header_title %}환영합니다!{% endblock %}
+{% block styles %}
+    <!-- 기존 스타일 유지: base.html에 이미 포함 -->
+{% endblock %}
+{% block content %}
+    <!-- 기존 네비게이션 링크 제거: base.html에서 공통 제공 -->
+    <!-- 기존 콘텐츠 유지 -->
+{% endblock %}
